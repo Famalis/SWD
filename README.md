@@ -1,0 +1,4 @@
+SWD
+===
+
+Sieć neurononowa GUI
