@@ -32,24 +32,13 @@ public class MouseClickListener implements MouseListener {
 			block = true;
 			//easel.setVisible(false);
 			//LOGGER.info("Board clicked at " + e.getX() + " " + e.getY());
-			easel.drawPoint(e.getX(), e.getY());
-			if (easel.board.getPoints().size() == 2) {
-				String text = "";
-				for (Point p : easel.board.getPoints()) {
-					//model.addElement(p);				
-					text += p + "\n";
-				}
-				//easel.auxFrame.areaPointsList.setModel(model);
-				easel.auxFrame.field.setText(text);
-				easel.auxFrame.getSettingsPanel().getEtykietaSrodek().setText(
-					easel.board.getPoints().get(0).getAxisX()+", "
-					+ easel.board.getPoints().get(0).getAxisY());
-				easel.auxFrame.getSettingsPanel().getEtykietaPromien().setText(
-						easel.board.getAreaCircleRadius()+"");
-				easel.auxFrame.pack();
-
+			if (easel.drawingVector()) {
+				System.out.println("Vector Point selected: "+e.getX()+" "+e.getY());
+				easel.drawVectorPoint(e.getX(), e.getY());
+			} else {
+				System.out.println("Point selected: "+e.getX()+" "+e.getY());
+				easel.drawPoint(e.getX(), e.getY());
 			}
-			//easel.setVisible(true);
 			block = false;
 		}
 	}

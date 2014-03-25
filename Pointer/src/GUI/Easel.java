@@ -8,6 +8,8 @@ package GUI;
 import GUI.AuxGUI.AuxFrame;
 import Engine.MouseClickListener;
 import Engine.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -18,7 +20,7 @@ import javax.swing.SwingUtilities;
 public class Easel extends JFrame {
 
 	public int xsize = 600, ysize = 600;
-	public Board board;
+	public Board2 board;
 	public AuxFrame auxFrame;
 
 	public Easel() {
@@ -31,7 +33,7 @@ public class Easel extends JFrame {
 	 * @return 
 	 */
 	public boolean initialize() {
-		board = new Board();
+		board = new Board2();
 		board.addMouseListener(new MouseClickListener(this));
 		add(board);
 		setTitle("Pointer");
@@ -46,6 +48,15 @@ public class Easel extends JFrame {
 
 				auxFrame = new AuxFrame();
 				auxFrame.initialize();
+				auxFrame.getDrawPerceptronButton().addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						board.setDrawVector(true);
+						auxFrame.getSettingsPanel().getDrawPeceptron().setEnabled(false);
+					}
+					
+				});
 			}
 		});		
 		Point.screenHeight = ysize;
@@ -60,12 +71,33 @@ public class Easel extends JFrame {
 	 * @param y
 	 * @return 
 	 */
-	public boolean drawPoint(int x, int y) {
-		if (board.getPoints().size() == 2) {
-			board.getPoints().clear();
-		}
+	public boolean drawPoint(int x, int y) {		
 		board.getPoints().add(new Point(x, y));
 		this.repaint();
 		return true;
+	}
+	
+	public void drawVectorPoint(int x, int y) {
+		if(board.getPerceptronPoints()[1]!=null) {
+			board.setPerceptronPoints(new Point[2]);
+			board.getPerceptronPoints()[0] = new Point(x,y);
+		} else {
+			board.getPerceptronPoints()[1] = new Point(x,y);
+			board.setDrawVector(false);
+			auxFrame.getSettingsPanel().getDrawPeceptron().setEnabled(true);
+		}
+		this.repaint();		
+	}
+	
+	public void startDrawingVector() {
+		board.setDrawVector(true);
+	}
+	
+	public void stopDrawingVector() {
+		board.setDrawVector(false);
+	}
+	
+	public boolean drawingVector() {
+		return board.isDrawVector();
 	}
 }
