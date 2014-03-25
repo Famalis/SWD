@@ -7,8 +7,8 @@ package GUI;
 
 import GUI.AuxGUI.AuxFrame;
 import Engine.MouseClickListener;
-import Engine.Perceptron;
-import Engine.Point;
+import Engine.Models.Perceptron;
+import Engine.Models.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;

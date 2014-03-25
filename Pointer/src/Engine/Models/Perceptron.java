@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
-package Engine;
+package Engine.Models;
+
+import Engine.Models.Point;
 
 /**
  *

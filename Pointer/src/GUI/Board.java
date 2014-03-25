@@ -5,9 +5,9 @@
  */
 package GUI;
 
-import Engine.Cluster;
+import Engine.Models.Cluster;
 import Engine.Operations;
-import Engine.Point;
+import Engine.Models.Point;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;

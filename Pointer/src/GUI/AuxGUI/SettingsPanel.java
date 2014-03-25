@@ -6,7 +6,7 @@
 
 package GUI.AuxGUI;
 
-import Engine.Point;
+import Engine.Models.Point;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;

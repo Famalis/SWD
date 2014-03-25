@@ -5,8 +5,8 @@
  */
 package GUI;
 
-import Engine.Perceptron;
-import Engine.Point;
+import Engine.Models.Perceptron;
+import Engine.Models.Point;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
