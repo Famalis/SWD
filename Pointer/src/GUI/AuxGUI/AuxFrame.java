@@ -54,4 +54,8 @@ public class AuxFrame extends JFrame{
 	public JButton getDrawPerceptronButton() {
 		return settingsPanel.getDrawPeceptron();
 	}
+	
+	public JButton getStartButton() {
+		return settingsPanel.getStartButton();
+	}
 }
