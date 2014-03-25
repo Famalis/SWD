@@ -13,12 +13,21 @@ package Engine.Models;
 public class Point {
 	
 	public int x,y;
+	public boolean status;
 	public static int screenWidth, screenHeight;
 	
 	public Point(int x, int y) {
 		super();
 		this.x = x;
 		this.y = y;
+		this.status = false;
+	}
+	
+	public Point(int x, int y, boolean status) {
+		super();
+		this.x = x;
+		this.y = y;
+		this.status = status;
 	}
 	
 	@Override
