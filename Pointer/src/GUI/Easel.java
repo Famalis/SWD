@@ -7,6 +7,7 @@ package GUI;
 
 import GUI.AuxGUI.AuxFrame;
 import Engine.MouseClickListener;
+import Engine.Perceptron;
 import Engine.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -78,11 +79,11 @@ public class Easel extends JFrame {
 	}
 	
 	public void drawVectorPoint(int x, int y) {
-		if(board.getPerceptronPoints()[1]!=null) {
-			board.setPerceptronPoints(new Point[2]);
-			board.getPerceptronPoints()[0] = new Point(x,y);
+		if(board.getPerceptron().getEndPoint()!=null) {
+			board.setPerceptron(new Perceptron());
+			board.getPerceptron().setStartPoint(new Point(x,y));
 		} else {
-			board.getPerceptronPoints()[1] = new Point(x,y);
+			board.getPerceptron().setEndPoint(new Point(x,y));
 			board.setDrawVector(false);
 			auxFrame.getSettingsPanel().getDrawPeceptron().setEnabled(true);
 		}

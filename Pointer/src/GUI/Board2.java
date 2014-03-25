@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Engine.Perceptron;
 import Engine.Point;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -24,13 +25,13 @@ public class Board2 extends JPanel {
 
 	private int width, height;
 	private ArrayList<Point> selectedPoints;
-	private Point[] perceptronPoints;
+	private Perceptron perceptron;
 	private boolean drawVector = false;
 
 	public Board2() {
 		super();
 		this.selectedPoints = new ArrayList<>();
-		this.perceptronPoints = new Point[2];
+		this.perceptron = new Perceptron();
 	}
 
 	@Override
@@ -76,13 +77,13 @@ public class Board2 extends JPanel {
 	}
 
 	public void paintPerceptron(Graphics2D g2) {
-		if (perceptronPoints[0] != null
-				&& perceptronPoints[1] != null) {
+		if (perceptron.getStartPoint() != null ||
+				perceptron.getStartPoint() != null){
 			g2.setColor(Color.green);
-			g2.drawLine(perceptronPoints[0].x,
-					perceptronPoints[0].y,
-					perceptronPoints[1].x,
-					perceptronPoints[1].y);
+			g2.drawLine(perceptron.getStartPoint().x,
+					perceptron.getStartPoint().y,
+					perceptron.getEndPoint().x,
+					perceptron.getEndPoint().y);
 		}
 	}
 
@@ -98,12 +99,11 @@ public class Board2 extends JPanel {
 		this.drawVector = drawVector;
 	}
 
-	public Point[] getPerceptronPoints() {
-		return perceptronPoints;
+	public Perceptron getPerceptron() {
+		return perceptron;
 	}
 
-	public void setPerceptronPoints(Point[] perceptronPoints) {
-		this.perceptronPoints = perceptronPoints;
+	public void setPerceptron(Perceptron perceptron) {
+		this.perceptron = perceptron;
 	}
-
 }
