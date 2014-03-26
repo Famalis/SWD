@@ -7,7 +7,6 @@
 package GUI;
 
 import Engine.Models.Point;
-import java.awt.FlowLayout;
 import javax.swing.JFrame;
 
 /**

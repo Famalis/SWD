@@ -8,8 +8,6 @@ package Engine.Models;
 import GUI.Easel;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -49,13 +47,6 @@ public class Perceptron {
 		
 		endPoint.setX(((int)(endPoint.getX()*weights[0])));
 		endPoint.setY(((int)(endPoint.getY()*weights[1])));
-		/*
-		startPoint.setXThroughAxisValue(startPoint.getAxisX()*weights[0]);
-		startPoint.setYThroughAxisValue(startPoint.getAxisY()*weights[1]);
-		
-		endPoint.setXThroughAxisValue(endPoint.getAxisX()*weights[0]);
-		endPoint.setYThroughAxisValue(endPoint.getAxisY()*weights[1]);
-		*/
 		
 		System.out.println("Error "+totalError);
 		System.out.println(Arrays.toString(weights));
