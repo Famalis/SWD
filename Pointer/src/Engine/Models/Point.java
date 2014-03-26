@@ -3,80 +3,84 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Engine.Models;
 
 /**
  *
- * @author Sergio
+ * @author sergio
  */
 public class Point {
+	
+	private int x,y,status;
+	
+	private static int screenWidth, screenHeight;
 
-	public int x, y;
-	public int status;
-	public static int screenWidth, screenHeight;
+	public static int getScreenWidth() {
+		return screenWidth;
+	}
 
+	public static void setScreenWidth(int screenWidth) {
+		Point.screenWidth = screenWidth;
+	}
+
+	public static int getScreenHeight() {
+		return screenHeight;
+	}
+
+	public static void setScreenHeight(int screenHeight) {
+		Point.screenHeight = screenHeight;
+	}
+	
 	public Point(int x, int y) {
-		super();
 		this.x = x;
 		this.y = y;
-		this.status = 0;
 	}
-
+	
 	public Point(int x, int y, int status) {
-		super();
 		this.x = x;
 		this.y = y;
 		this.status = status;
 	}
 
-	public Point(int x, int y, int status, boolean axisPoint) {
-		super();
-		this.status = status;
-		if (axisPoint) {
-			this.setAxisX(x);
-			this.setAxisY(y);			
-		} else {
-			this.x = x;
-			this.y = y;
-		}
+	public int getX() {
+		return x;
 	}
 
-	@Override
-	public String toString() {
-		return x + ", " + y;
+	public void setX(int x) {
+		this.x = x;
 	}
 
-	public String axisString() {
-		return getAxisX() + ", " + getAxisY();
+	public int getY() {
+		return y;
 	}
 
-	/**
-	 * Zwraca współrzędną x jak na układzie współrzędnych (punkt 0 na środku)
-	 *
-	 * @return
-	 */
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+	public void setXThroughAxisValue(double x) {
+		this.x = (int) (x + screenWidth/2);
+	}
+	
+	public void setYThroughAxisValue(double y) {
+		this.y = (int) (y + screenWidth/2);
+	}
+	
 	public double getAxisX() {
-		return x - (screenWidth / 2);
+		return x - (screenWidth/2);
 	}
-
-	/**
-	 * Zwraca współrzędną y jak na układzie współrzędnych (punkt 0 na środku)
-	 *
-	 * @return
-	 */
+	
 	public double getAxisY() {
-		return -1 * (y - (screenHeight / 2));
+		return y - (screenHeight/2);
 	}
 
-	public void setAxisX(int x) {
-		this.x = x + (screenWidth / 2);
+	public int getStatus() {
+		return status;
 	}
 
-	public void setAxisY(int y) {
-		this.y = -1 * (y + (screenHeight / 2));
+	public void setStatus(int status) {
+		this.status = status;
 	}
-
-	public boolean equals(Point p) {
-		return p.x == x && p.y == y;
-	}
+	
 }

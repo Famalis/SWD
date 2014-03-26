@@ -3,44 +3,46 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Engine;
 
+import Engine.Models.Point;
+import GUI.AuxGUI.SettingsFrame;
 import GUI.Easel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
 
 /**
  *
- * @author Sergio
+ * @author sergio
  */
-public class MouseClickListener implements MouseListener {
+public class EaselMouseListener implements MouseListener{
 
-	private static final Logger LOGGER = Logger.getLogger(MouseClickListener.class.getCanonicalName());
 	private Easel easel;
-	private boolean block = false;
-
-	public MouseClickListener(Easel easel) {
+	private SettingsFrame settingsFrame;
+	
+	public EaselMouseListener(Easel ea, SettingsFrame sf) {
 		super();
-		this.easel = easel;
+		easel = ea;
+		settingsFrame = sf;
 	}
-
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (!block) {
-			block = true;
-			//easel.setVisible(false);
-			//LOGGER.info("Board clicked at " + e.getX() + " " + e.getY());
-			if (easel.drawingVector()) {
-				System.out.println("Vector Point selected: "+e.getX()+" "+e.getY());
-				easel.drawVectorPoint(e.getX(), e.getY());
-			} else {
-				System.out.println("Point selected: "+e.getX()+" "+e.getY());
-				easel.drawPoint(e.getX(), e.getY());
+		if(easel.isDrawingVector()) {
+			if(easel.getBoard().getPerceptron().getStartPoint()==null) {
+				easel.getBoard().getPerceptron().setStartPoint(
+					new Point(e.getX(), e.getY()));
+				System.out.println("Perceptron start set");
+			} else if (easel.getBoard().getPerceptron().getEndPoint()==null){
+				easel.getBoard().getPerceptron().setEndPoint(
+					new Point(e.getX(), e.getY()));
+				System.out.println("Perceptron end set");
+				easel.setDrawingVector(false);
+				settingsFrame.getPanel().getDrawVectorButton().setEnabled(true);
 			}
-			block = false;
+			
 		}
+		easel.repaint();
 	}
 
 	@Override
@@ -62,5 +64,5 @@ public class MouseClickListener implements MouseListener {
 	public void mouseExited(MouseEvent e) {
 		//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
-
+	
 }
