@@ -17,10 +17,12 @@ import javax.swing.JFrame;
 public class Easel extends JFrame{
 	
 	private Board board;
-	private boolean drawingVector;
+	private boolean drawingVector, select0, select1;
 	
 	public Easel() {
 		drawingVector = false;
+		select0 = false;
+		select1 = false;
 	}
 	
 	public void initalization() {
@@ -46,6 +48,22 @@ public class Easel extends JFrame{
 
 	public Board getBoard() {
 		return board;
+	}
+
+	public boolean isSelect0() {
+		return select0;
+	}
+
+	public void setSelect0(boolean select0) {
+		this.select0 = select0;
+	}
+
+	public boolean isSelect1() {
+		return select1;
+	}
+
+	public void setSelect1(boolean select1) {
+		this.select1 = select1;
 	}
 	
 }

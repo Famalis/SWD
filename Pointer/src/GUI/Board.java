@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -21,9 +22,13 @@ import javax.swing.JPanel;
 public class Board extends JPanel {
 
 	private Perceptron perceptron;
+	private ArrayList<Point> group0;
+	private ArrayList<Point> group1;
 
 	public Board() {
 		perceptron = new Perceptron();
+		group0 = new ArrayList<>();
+		group1 = new ArrayList<>();
 	}
 
 	public void initialization() {
@@ -37,7 +42,23 @@ public class Board extends JPanel {
 	public void setPerceptron(Perceptron perceptron) {
 		this.perceptron = perceptron;
 	}
-	
+
+	public ArrayList<Point> getGroup0() {
+		return group0;
+	}
+
+	public void setGroup0(ArrayList<Point> group0) {
+		this.group0 = group0;
+	}
+
+	public ArrayList<Point> getGroup1() {
+		return group1;
+	}
+
+	public void setGroup1(ArrayList<Point> group1) {
+		this.group1 = group1;
+	}
+		
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
@@ -52,6 +73,7 @@ public class Board extends JPanel {
 		g2.setStroke(new BasicStroke(1));
 		paintAxis(g2);
 		paintPerceptron(g2);
+		paintPoints(g2);
 
 	}
 
@@ -77,5 +99,18 @@ public class Board extends JPanel {
 					perceptron.getEndPoint().getX(),
 					perceptron.getEndPoint().getY());
 		}
+	}
+
+	private void paintPoints(Graphics2D g2) {
+		g2.setStroke(new BasicStroke(1));
+		g2.setColor(Color.red);
+		for (Point p : group0) {
+			g2.drawLine(p.getX(), p.getY(), p.getX(), p.getY());
+		}
+		g2.setColor(Color.blue);
+		for (Point p : group1) {
+			g2.drawLine(p.getX(), p.getY(), p.getX(), p.getY());
+		}
+		
 	}
 }

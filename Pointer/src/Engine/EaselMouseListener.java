@@ -41,6 +41,12 @@ public class EaselMouseListener implements MouseListener{
 				settingsFrame.getPanel().getDrawVectorButton().setEnabled(true);
 			}
 			
+		} else if (easel.isSelect0()){
+			easel.getBoard().getGroup0().add(new Point(e.getX(), e.getY(), 0));
+			System.out.println("Select point for cluster 0");
+		} else if (easel.isSelect1()){
+			easel.getBoard().getGroup1().add(new Point(e.getX(), e.getY(), 1));
+			System.out.println("Select point for cluster 1");
 		}
 		easel.repaint();
 	}
